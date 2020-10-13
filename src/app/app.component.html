@@ -1,0 +1,112 @@
+<div class="header">
+  <a href="#" class="logo">All Items</a>
+</div>
+
+<div class="container-fluid">
+  <div class="row m-5">
+    <div class="col-md-9">
+      <div class="row">
+        <!-- Prodcuts -->
+        <div *ngFor="let product of products; let idx = index" class="col-md-3 col-sm-6 col-xs-12">
+          <div class="card">
+            <p class="discount-percent"><strong>{{product.discount}}% DIS</strong></p>
+            <div>
+              <img src="{{product.imagePath}}" class="img-product img-responsive"
+                alt="item pic">
+            </div>
+            <div class="footer">
+              <div class="row">
+                <div class="col-md-6">
+                  <span class="float-left">
+                    <p>{{product.name}}</p>
+                    <p><span><del>${{product.price}}</del></span><span>&nbsp; ${{product.price-(product.price*(product.discount/100))}}</span></p>
+                  </span>
+                </div>
+                <div class="col-md-6">
+                  <span class="float-right">
+                    <button *ngIf="product.cartQuantity == 0" class="btn btn-outline-primary float-right" (click)="addToCart(idx)">Add to Cart</button>
+                    <button *ngIf="product.cartQuantity != 0" class="btn btn-outline-primary float-right" (click)="removeFromCart(product.name)">Remove from Cart</button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Prodcuts End-->
+      </div>
+    </div>
+
+    <!-- Cart Element -->
+    <div class="col-md-3">
+      <hr style="padding: 0%; margin-top: 0px;">
+      <div class="row">
+        <div class="col-md-4" style="text-align: left !important;">Item({{cart.length}})</div>
+        <div class="col-md-4" style="text-align: center !important;">Qty.</div>
+        <div class="col-md-4" style="text-align: right !important;">Price</div>
+      </div>
+      <hr>
+      <div class="row" *ngFor="let item of cart; let idx = index">
+        <div class="col-md-4 col-sx-12" style="text-align: left !important;">
+          <span style="border: 1px solid gray; padding-right: 5px;">
+            <img src="{{item.imagePath}}" alt="pic" style="height: 15px; width: 15px; margin-bottom: 5px; margin-left: 5px;">
+            {{item.name}}
+            <span style="cursor: pointer" (click)="removeFromCart(item.name)">&#10006;</span>
+          </span>
+        </div>
+        <div class="col-md-4 col-sx-12" style="text-align: center !important;">
+          <span style="cursor: pointer;" (click)="decreaseQty(item.name)">&#8722;</span>
+          {{item.cartQuantity}}
+          <span style="cursor: pointer;" (click)="increaseQty(item.name)">&#43;</span>
+        </div>
+        <div class="col-md-4 col-sx-12" style="text-align: right !important;">${{item.price*item.cartQuantity}}</div>
+      </div>
+      <br>
+      <hr>
+
+      <!-- Cart Value -->
+      <div class="row total-cart">
+        <div class="col-md-12">
+          <strong>Total</strong>
+        </div>
+          <div class="col-md-4 col-sx-4"> 
+            Item({{cart.length}})
+          </div>
+          <div class="col-md-4 col-sx-4"> 
+            <div style="text-align: center !important;">:</div>
+          </div>
+          <div class="col-md-4 col-sx-4" style="text-align: right">
+            ${{cartTotal}}
+            <!-- <div>{{ (cart.reduce((a, b) => ({price: a.price + b.price}))).price; }}</div> -->
+          </div>
+          <div class="col-md-4 col-sx-4"> 
+            Discount
+          </div>
+          <div class="col-md-4 col-sx-4"> 
+            <div style="text-align: center !important;">:</div>
+          </div>
+          <div class="col-md-4 col-sx-4" style="text-align: right">
+            <div>-${{cartDiscountTotal}}</div>
+          </div>
+          <div class="col-md-4 col-sx-4"> 
+            Type Discount
+          </div>
+          <div class="col-md-4 col-sx-4"> 
+            <div style="text-align: center !important;">:</div>
+          </div>
+          <div class="col-md-4 col-sx-4" style="text-align: right;">
+            <div>-${{cartTypeDiscount}}</div>
+          </div>
+      
+            <div class="col-md-4 col-sx-4" style="background-color: lightgrey;"> 
+              Order Total
+            </div>
+            <div class="col-md-4 col-sx-4" style="background-color: lightgrey;"> 
+              <div style="text-align: center !important;">:</div>
+            </div>
+            <div class="col-md-4 col-sx-4" style="background-color: lightgrey; text-align: right;">
+              <div>${{orderTotal}}</div>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>

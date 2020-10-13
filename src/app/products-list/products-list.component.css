@@ -1,0 +1,36 @@
+.card {
+    width: 100%;
+    border: 1.5px solid grey;
+    margin: 0px 5px 5px 0px !important;
+}
+
+.img-product {
+    padding: 10%;
+    height: 100%;
+    width: 100%;
+}
+.footer{
+    background-color: rgb(222, 222, 222);
+    padding: 5%;
+}
+
+.btn {
+    /* margin: 20px 15px 0px 0px !important; */
+    vertical-align: middle;
+}
+
+.discount-percent {
+    position: absolute;
+    margin-top: 30px;
+    background-color: rgb(18, 245, 18);
+    color: white;
+}
+
+.cart{
+    width: 100%;
+    height: 50px;
+}
+
+.total-cart {
+    border: 1px solid grey;
+}
